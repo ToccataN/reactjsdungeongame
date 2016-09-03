@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import Square from './square.js';
 import Fog from './fog.js';
 
+var up = 'ArrowUp',
+    left = 'ArrowLeft',
+    right = 'ArrowRight',
+    down = 'ArrowDown';
 
 window.addEventListener('keydown', function(e){
     if ([37, 38, 39, 40].indexOf(e.keyCode)> -1){
@@ -41,7 +45,7 @@ var fogCheck =function(p){
 
 var enemyCheck = function(arr, p, e, d, a){
     for ( var i = 0 ; i < e.length ; i++){
-       if(d=='left' && p[0]-1==e[i].coord[0]&&p[1]==e[i].coord[1] ) {
+       if(d==left && p[0]-1==e[i].coord[0]&&p[1]==e[i].coord[1] ) {
             if (e[i].hp -a > 0){
                e[i] ={hp: e[i].hp - a, coord: e[i].coord, strike: e[i].strike };
                return e;
@@ -51,7 +55,7 @@ var enemyCheck = function(arr, p, e, d, a){
                return e;
              }
              
-        } else if(d == 'up' && p[0]==e[i].coord[0]&&p[1]-1==e[i].coord[1]){
+        } else if(d == up && p[0]==e[i].coord[0]&&p[1]-1==e[i].coord[1]){
              if (e[i].hp -a > 0){
                e[i] ={hp: e[i].hp - a, coord: e[i].coord, strike: e[i].strike };
                return e;
@@ -61,7 +65,7 @@ var enemyCheck = function(arr, p, e, d, a){
                return e;
              }
              
-        } else if(d =='right' && p[0]+1==e[i].coord[0]&&p[1]==e[i].coord[1]){
+        } else if(d ==right && p[0]+1==e[i].coord[0]&&p[1]==e[i].coord[1]){
              if (e[i].hp -a > 0){
                e[i] ={hp: e[i].hp - a, coord: e[i].coord, strike: e[i].strike };
                return e;
@@ -71,7 +75,7 @@ var enemyCheck = function(arr, p, e, d, a){
                return e;
              }
            
-       } else if(d == 'down' && p[0]==e[i].coord[0]&&p[1]+1==e[i].coord[1]){
+       } else if(d == down  && p[0]==e[i].coord[0]&&p[1]+1==e[i].coord[1]){
                if (e[i].hp -a > 0){
                  e[i] ={hp: e[i].hp - a, coord: e[i].coord, strike: e[i].strike };
                  return e;
@@ -91,19 +95,19 @@ var playerAttack = function(p){
 
 var enemyAttack = function(p, e, d){
     for ( var i = 0 ; i < e.length ; i++){
-       if(d=='left') {
+       if(d==left) {
             if(p[0]-1==e[i].coord[0]&&p[1]==e[i].coord[1]){
             return Math.floor(Math.random()*e[i].strike-0);
         }
-       } else if(d == 'up'){
+       } else if(d == up){
             if(p[0]==e[i].coord[0]&&p[1]-1==e[i].coord[1]){
             return Math.floor(Math.random()*e[i].strike-0);
         }
-       } else if(d =='right'){
+       } else if(d ==right){
                if(p[0]+1==e[i].coord[0]&&p[1]==e[i].coord[1]){
                return Math.floor(Math.random()*e[i].strike-0);
         }
-       } else if(d == 'down'){
+       } else if(d == down){
                if(p[0]==e[i].coord[0]&&p[1]+1==e[i].coord[1]){
                return Math.floor(Math.random()*e[i].strike-0);
         }
@@ -113,19 +117,19 @@ var enemyAttack = function(p, e, d){
 
 var weaponName = function(p, w, d){
     for (var i = 0; i< w.length; i++){
-       if(d=='left') {
+       if(d==left) {
             if(p[0]-1==w[i].coord[0]&&p[1]==w[i].coord[1]){
             return w[i].name;
         }
-       } else if(d == 'up'){
+       } else if(d == up){
             if(p[0]==w[i].coord[0]&&p[1]-1==w[i].coord[1]){
             return w[i].name;
         }
-       } else if(d =='right'){
+       } else if(d ==right){
                if(p[0]+1==w[i].coord[0]&&p[1]==w[i].coord[1]){
                return w[i].name;
         }
-       } else if(d == 'down'){
+       } else if(d == down){
                if(p[0]==w[i].coord[0]&&p[1]+1==w[i].coord[1]){
                return w[i].name;
         }
@@ -137,19 +141,19 @@ var weaponName = function(p, w, d){
 
 var weaponStrike =function(p, w, d){
     for (var i = 0; i< w.length; i++){
-        if(d=='left') {
+        if(d==left) {
             if(p[0]-1==w[i].coord[0]&&p[1]==w[i].coord[1]){
             return w[i].strike;
         }
-       } else if(d == 'up'){
+       } else if(d == up){
             if(p[0]==w[i].coord[0]&&p[1]-1==w[i].coord[1]){
             return w[i].strike;
         }
-       } else if(d =='right'){
+       } else if(d ==right){
                if(p[0]+1==w[i].coord[0]&&p[1]==w[i].coord[1]){
                return w[i].strike;
         }
-       } else if(d == 'down'){
+       } else if(d == down){
                if(p[0]==w[i].coord[0]&&p[1]+1==w[i].coord[1]){
                return w[i].strike;
         }
@@ -160,13 +164,13 @@ var weaponStrike =function(p, w, d){
 var playerCoord = function(p, m){
     var x = p[0],
         y= p[1];
-        if (m=='left'){
+        if (m==left){
             return[x-1, y];
-        } else if (m=='up'){
+        } else if (m==up){
             return [x, y-1];
-        } else if (m=='right'){
+        } else if (m==right){
             return [x+1, y];
-        }else if (m=='down'){
+        }else if (m==down){
             return [x, y+1];
         }
 }
@@ -174,21 +178,21 @@ var playerCoord = function(p, m){
 var playerMove = function(arr, p, m){
     var x=p[0],
         y=p[1];
-    if (m== 'left'){
+    if (m== left){
           arr[x].splice(y, 1, 'true');
           x= x-1;
           arr[x].splice(y, 1, 'player');
           return arr;
-     } else if (m== 'up'){
+     } else if (m== up){
           arr[x].splice(y, 1, 'true');
           arr[x].splice(y-1, 1, 'player');
           return arr;
-     } else if (m== 'right'){
+     } else if (m== right){
           arr[x].splice(y, 1, 'true');
           x= x+1;
           arr[x].splice(y, 1, 'player');
           return arr;
-     }else if (m== 'down'){
+     }else if (m== down){
           arr[x].splice(y, 1, 'true');
           arr[x].splice(y+1, 1, 'player');
           return arr;
@@ -199,7 +203,7 @@ var playerMove = function(arr, p, m){
 var checkPos =function (arr , p, d){
     var x= p[0],
         y= p[1];
-    if(d == 'left') {
+    if(d == left) {
        if (arr[x-1][y] =='true'){
              return 'true';
        } else if (arr[x-1][y] =='health'){
@@ -209,7 +213,7 @@ var checkPos =function (arr , p, d){
        } else if(arr[x-1][y] =='enemy'){
            return 'enemy';
        }
-    } else if(d== 'up'){
+    } else if(d== up){
         if(arr[x][y-1] == 'true'){
             return 'true';
         } else if(arr[x][y-1] == 'health'){
@@ -220,7 +224,7 @@ var checkPos =function (arr , p, d){
             return 'enemy';
         }
         
-    }else if(d== 'right'){
+    }else if(d== right){
         if(arr[x+1][y] =='true') {
             return 'true';
         } else if(arr[x+1][y] =='health'){
@@ -230,7 +234,7 @@ var checkPos =function (arr , p, d){
         }else if(arr[x+1][y] =='enemy'){
             return 'enemy';
         }
-    }else if(d== 'down'){
+    }else if(d== down ){
         if (arr[x][y+1] == 'true'){
             return 'true';
         } else if( arr[x][y+1] == 'health') {
@@ -451,40 +455,42 @@ class Board extends Component{
             player= this.state.player,
             weapons = this.state.weapons,
             enemy = this.state.enemy,
+            direction,
             th =this;
-          if (e.code == 'ArrowLeft'){
-              if (checkPos(arr, player.coord, 'left')=='true'){
-              this.setState({array: playerMove(arr, player.coord, 'left'),
-                  player: { coord: playerCoord(player.coord, 'left'),
+          
+              direction = checkPos(arr, player.coord, e.code);
+              if (direction=='true'){
+              this.setState({array: playerMove(arr, player.coord, e.code),
+                  player: { coord: playerCoord(player.coord, e.code),
                             hp: player.hp,
                             weapon: player.weapon,
                             strike: player.strike
                   }
               });
-              } else if (checkPos(arr, player.coord, 'left')=='health'){
-                  this.setState({array: playerMove(arr, player.coord, 'left'),
-                  player: { coord: playerCoord(player.coord, 'left'),
+              } else if (direction=='health'){
+                  this.setState({array: playerMove(arr, player.coord, e.code),
+                  player: { coord: playerCoord(player.coord, e.code),
                             hp: player.hp + 20,
                             weapon: player.weapon,
                             strike: player.strike
                   }
               });
-              } else if(checkPos(arr, player.coord, 'left')=='weapon'){
-                    this.setState({array: playerMove(arr, player.coord, 'left'),
-                       player: { coord: playerCoord(player.coord, 'left'),
+              } else if(direction=='weapon'){
+                    this.setState({array: playerMove(arr, player.coord, e.code),
+                       player: { coord: playerCoord(player.coord, e.code),
                             hp: player.hp,
-                            weapon: weaponName(player.coord, weapons, 'left'),
-                            strike: weaponStrike(player.coord, weapons,'left')
+                            weapon: weaponName(player.coord, weapons, e.code),
+                            strike: weaponStrike(player.coord, weapons,e.code)
                   }
               });
-              } else if(checkPos(arr, player.coord, 'left')=='enemy'){
-                  var enemyAtt = enemyAttack(player.coord, enemy, 'left' ),
+              } else if(direction=='enemy'){
+                  var enemyAtt = enemyAttack(player.coord, enemy, e.code ),
                       playerAtt = playerAttack(player);
                       if (playerAtt>= enemy.hp){
                            this.setState({
-                               enemy: enemyCheck(arr, player.coord, enemy, 'left', playerAtt),
-                               array: playerMove(arr, player.coord, 'left'),
-                               player: { coord: playerCoord(player.coord, 'left'),
+                               enemy: enemyCheck(arr, player.coord, enemy, e.code, playerAtt),
+                               array: playerMove(arr, player.coord, e.code),
+                               player: { coord: playerCoord(player.coord, e.code),
                                  hp: player.hp,
                                  weapon: player.weapon,
                                  strike: player.strike
@@ -493,7 +499,7 @@ class Board extends Component{
                       } 
                       
                           this.setState({ 
-                              enemy: enemyCheck(arr, player.coord, enemy, 'left', playerAtt),
+                              enemy: enemyCheck(arr, player.coord, enemy, e.code, playerAtt),
                               player: {
                                  coord: player.coord,
                                  hp : player.hp - enemyAtt,
@@ -504,169 +510,6 @@ class Board extends Component{
                       
                   
               }
-             
-          } else if (e.code == 'ArrowUp'){
-              if( checkPos(arr, player.coord, 'up')=='true'){
-                  this.setState({array: playerMove(arr, player.coord, 'up'),
-                  player: {coord: playerCoord(player.coord, 'up'),
-                            hp: player.hp,
-                            weapon: player.weapon,
-                            strike: player.strike
-                  }
-              });
-              } else if( checkPos(arr, player.coord, 'up')=='health'){
-                  this.setState({array: playerMove(arr, player.coord, 'up'),
-                  player: { coord: playerCoord(player.coord, 'up'),
-                      hp: player.hp + 20,
-                      weapon: player.weapon,
-                      strike: player.strike
-                  }
-              });
-              }else if( checkPos(arr, player.coord, 'up')=='weapon'){
-                      this.setState({array: playerMove(arr, player.coord, 'up'),
-                          player: { coord: playerCoord(player.coord, 'up'),
-                                 hp: player.hp,
-                                 weapon: weaponName(player.coord, weapons, 'up'),
-                                 strike: weaponStrike(player.coord, weapons,'up')
-                  }
-              });
-              }else if(checkPos(arr, player.coord, 'up')=='enemy'){
-                  var enemyAtt = enemyAttack(player.coord, enemy, 'up' ),
-                      playerAtt = playerAttack(player);
-                      if (playerAtt>= enemy.hp){
-                           this.setState({
-                               enemy: enemyCheck(arr, player.coord, enemy, 'up', playerAtt),
-                               array: playerMove(arr, player.coord, 'up'),
-                               player: { coord: playerCoord(player.coord, 'up'),
-                                 hp: player.hp,
-                                 weapon: player.weapon,
-                                 strike: player.strike
-                             }
-                         });
-                      } 
-                   
-                          this.setState({ 
-                              enemy: enemyCheck(arr, player.coord, enemy, 'up', playerAtt),
-                              player: {
-                                 coord: player.coord,
-                                 hp : player.hp - enemyAtt,
-                                 weapon: player.weapon,
-                                 strike: player.strike
-                              },
-                          })
-                      
-                  
-              }
-             
-          }  else if (e.code == 'ArrowRight' ){
-              if(checkPos(arr, player.coord, 'right')=='true'){
-                   this.setState({array: playerMove(arr, player.coord, 'right'),
-                  player:{coord: playerCoord(player.coord, 'right'),
-                            hp: player.hp,
-                            weapon: player.weapon,
-                            strike: player.strike
-                  }
-              });
-              } else if(checkPos(arr, player.coord, 'right')=='health'){
-                   this.setState({array: playerMove(arr, player.coord, 'right'),
-                  player: { coord: playerCoord(player.coord, 'right'),
-                      hp: player.hp + 20,
-                      weapon: player.weapon,
-                      strike: player.strike
-                  }
-              });
-              }else if(checkPos(arr, player.coord, 'right')=='weapon'){
-                       this.setState({array: playerMove(arr, player.coord, 'right'),
-                          player: { coord: playerCoord(player.coord, 'right'),
-                                 hp: player.hp,
-                                 weapon: weaponName(player.coord, weapons, 'right'),
-                                 strike: weaponStrike(player.coord, weapons, 'right')
-                  }
-              });
-              
-              }else if(checkPos(arr, player.coord, 'right')=='enemy'){
-                  var enemyAtt = enemyAttack(player.coord, enemy, 'right' ),
-                      playerAtt = playerAttack(player);
-                      if (playerAtt>= enemy.hp){
-                           this.setState({
-                               enemy: enemyCheck(arr, player.coord, enemy, 'right', playerAtt),
-                               array: playerMove(arr, player.coord, 'right'),
-                               player: { coord: playerCoord(player.coord, 'right'),
-                                 hp: player.hp,
-                                 weapon: player.weapon,
-                                 strike: player.strike
-                             }
-                         });
-                      } 
-                      
-                          this.setState({ 
-                              enemy: enemyCheck(arr, player.coord, enemy, 'right', playerAtt),
-                              player: {
-                                 coord: player.coord,
-                                 hp : player.hp - enemyAtt,
-                                 weapon: player.weapon,
-                                 strike: player.strike
-                              },
-                          })
-                      
-                  
-              }
-             
-          }else if (e.code == 'ArrowDown'){
-              if (checkPos(arr, player.coord, 'down')=='true'){
-                  this.setState({array: playerMove(arr, player.coord, 'down'),
-                  player: {coord: playerCoord( player.coord, 'down'),
-                            hp: player.hp,
-                            weapon: player.weapon,
-                            strike: player.strike
-                  }
-              });
-              }else if(checkPos(arr, player.coord, 'down')=='health'){
-                   this.setState({array: playerMove(arr, player.coord, 'down'),
-                      player: { coord: playerCoord(player.coord, 'down'),
-                      hp: player.hp + 20,
-                      weapon: player.weapon,
-                      strike: player.strike
-                  }
-              });
-              } else if(checkPos(arr, player.coord, 'down')=='weapon'){
-                   this.setState({array: playerMove(arr, player.coord, 'down'),
-                          player: { coord: playerCoord(player.coord, 'down'),
-                                 hp: player.hp,
-                                 weapon: weaponName(player.coord, weapons, 'down'),
-                                 strike: weaponStrike(player.coord, weapons,'down')
-                  }
-              });
-              }else if(checkPos(arr, player.coord, 'down')=='enemy'){
-                  var enemyAtt = enemyAttack(player.coord, enemy, 'down' ),
-                      playerAtt = playerAttack(player);
-                      if (playerAtt>= enemy.hp){
-                           this.setState({
-                               enemy: enemyCheck(arr, player.coord, enemy, 'down', playerAtt),
-                               array: playerMove(arr, player.coord, 'down'),
-                               player: { coord: playerCoord(player.coord, 'down'),
-                                 hp: player.hp,
-                                 weapon: player.weapon,
-                                 strike: player.strike
-                             }
-                         });
-                      } 
-                     
-                          this.setState({ 
-                              enemy: enemyCheck(arr, player.coord, enemy, 'down', playerAtt),
-                              player: {
-                                 coord: player.coord,
-                                 hp : player.hp - enemyAtt,
-                                 weapon: player.weapon,
-                                 strike: player.strike
-                              },
-                          })
-                      
-                  
-              }
-             
-          }
-        
     }
     
    render() {
