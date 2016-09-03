@@ -1,0 +1,110 @@
+$s: (8px);
+.svar {
+     border: 0.5px solid black;
+     width: $s;
+     height: $s;
+    }
+
+body{
+    background-color: black;
+}
+
+ul {
+    padding: 0px;
+    list-style: none;
+    overflow: none;
+}
+
+li {
+    display: inline-block;
+}
+
+.board {
+    width: 1000px;
+    height: 600px;
+    background-color: white;
+}
+
+.squaref {
+    @extend .svar;
+    background-color: gray;
+    
+}
+.squaret {
+     @extend .svar;
+    background-color: white;
+}
+.squareh {
+      @extend .svar;
+    background-color: green;
+}
+
+.squarep {
+      @extend .svar;
+    background-color: blue;
+}
+
+.squaree {
+      @extend .svar;
+    background-color: red;
+}
+.squarew {
+      @extend .svar;
+    background-color: purple;
+}
+
+.squareb {
+    @extend .svar;
+    background-color: black; 
+}
+
+.squaret {
+     @extend .svar;
+    background-color: transparent; 
+}
+
+.fog {
+    z-index: 2;
+    margin-top : -620px;
+
+}
+.map {
+    z-index: 3;
+}
+
+.stats {
+    z-index: 1;
+    margin: 0 auto;
+    margin-left: 500px;
+}
+.ulstat li{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.health {
+    width: 150px;
+    margin-top: -50px;
+    margin-left: 10px;
+    height: auto;
+    font-size: 16pt;
+    text-align: center;
+    background-color: white;
+}
+
+.weapon{
+    @extend .health;
+}
+.lex {
+    width: 148px;
+    height: auto;
+    background-color: white;
+    text-align: left;
+    margin-left: 10px;
+    padding-left: 2px;
+}
+
+.lose {
+    text-align: center;
+    font-size: 38pt;
+    color: red;
+}
